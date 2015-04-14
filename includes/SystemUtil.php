@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Extracto de funciones base de Epsylon
  */
@@ -9,6 +10,7 @@
  * @author Evolution
  */
 abstract class SystemUtil {
+
     public static function createMenuNav($paramArray) {
         echo '<nav class="navbar navbar-inverse main-menu">
                         <div class="container">
@@ -25,14 +27,15 @@ abstract class SystemUtil {
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="menu-principal">
                                 <ul class="nav navbar-nav">
-                                    '.SystemUtil::bootstrap_main_menu($paramArray, "active").' 
+                                    ' . SystemUtil::bootstrap_main_menu($paramArray, "active") . ' 
                                 </ul>
                             </div>
                         </div>
                     </nav>';
     }
+
     //$parent, $level, $topline, $actual = "", $sub = 0, $class_active = "active"
-    public static function bootstrap_main_menu($paramArray=null, $class_active = "active") {
+    public static function bootstrap_main_menu($paramArray = null, $class_active = "active") {
         foreach ($paramArray as $key => $val) {
             $$key = $val;
         }
@@ -53,15 +56,16 @@ abstract class SystemUtil {
             $litag = "<li class='dropdown'>";
             $hreftag = "";
         }
-        
-        foreach ($menuArray as $menu => $obj) {
+
+        foreach ($menuArray as $menu => $submenu) {
             //Agregado para crear links en modo MOD REWRITE ON
-            if (!empty($obj->getLink()) || $obj->getLink() != null) {
-                $link_ = $obj->getId();
-            }
-            if (count($obj) > 0) {
+            //null primer parametro de submenu no tiene link
+            if (is_array($submenu[1])) {
+                if (!empty($submenu[0]) || $submenu[0] != null) {
+                    $link_ = $submenu[0];
+                }
                 $str .= "<li class='dropdown'>";
-                $str .= "<a class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>" . $obj->getNombre() . "<span class='caret'></span></a>";
+                $str .= "<a class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>" . $menu . "<span class='caret'></span></a>";
                 $str .= "<ul class='dropdown-menu' role='menu'>";
                 if ($hreftag == "") {
                     $valsub = 1;
@@ -69,27 +73,27 @@ abstract class SystemUtil {
                     $valsub = 0;
                 }
                 $str .= self::bootstrap_main_menu(
-                        array(
-                            "parent" => $obj->getId(),
-                            "level" => $level + 1, 
-                            "topline" => 1, 
-                            "actual" => $actual,
-                            "sub" => $valsub
-                        )
-                        );
+                                array(
+                                    "level" => $level + 1,
+                                    "topline" => 1,
+                                    "actual" => $actual,
+                                    "sub" => $sub,
+                                    "menuArray" => $submenu[1]
+                                )
+                );
                 $str .= "</ul>";
                 $str .= "</li>";
-            } else if (count($obj) == 0) {
-                if ($actual == $obj->getLink() || (empty($actual) && $obj->getLink() == 'index')) {
+            } else {
+                if ($actual == $submenu[0]) {
                     $a_class = " class='" . $class_active . "'";
                 } else {
                     $a_class = "";
                 }
-                $str .= "<li" . $a_class . "><a href='" . $link_ . "'>" . $obj->getNombre() . "</a></li>";
+                $str .= "<li" . $a_class . "><a href='" . $link_ . "'>" . $menu . "</a></li>";
             }
         }
 
         return $str;
     }
-    
+
 }

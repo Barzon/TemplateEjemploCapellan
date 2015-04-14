@@ -1,3 +1,19 @@
 h1,h2,h3,h4,h5,h6 {
     color:#ffb648;
 }
+h1.title, h2.title, h3.title, h4.title, h5.title, h6.title {
+    color:#039;
+}
+.l-margin-em {
+    margin:1em;
+}
+.l-box-em {
+    padding:1em;
+}
+.l-margin {
+    margin:0.5em;
+}
+.l-box {
+    padding:0.5em;
+}
+
