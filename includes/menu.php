@@ -3,6 +3,7 @@
 $inicio = array(
   "Inicio" => "index"  
 );
+
 $nuestro_colegio_subs = array(
 			'Personal' =>'/CapellanPascal/nuestrocolegio/personal/personal.html',
 			'Directivos' => '/CapellanPascal/nuestrocolegio/personal/001_directivos/directivos.html',
