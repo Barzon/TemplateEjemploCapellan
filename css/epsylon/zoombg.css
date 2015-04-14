@@ -1,0 +1,40 @@
+/* 
+    Created on : 03-03-2015, 15:46:00
+    Author     : Alejandro Lira
+*/
+.image-container {
+    height:100%;
+    width: 100%;
+    background-size:cover;
+    position:absolute;
+    z-index:-1;
+    /*background-image: url('images/dragon-ball-z.jpg');*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center; 
+}
+.div-box {
+    height:245px;
+    width:357px;
+    overflow: hidden;
+    position:relative;
+    border:1px solid #000;
+}
+.div-box:hover .image-container {
+    -moz-transform:scale(1.5);
+    -webkit-transform:scale(1.5);
+    -o-transform:scale(1.5);
+    transform:scale(1.5);		
+}
+.div-box .image-container {
+    -moz-transform:scale(1,1);
+    -webkit-transform:scale(1,1);
+    -o-transform:scale(1,1);
+    transform:scale(1,1);
+    -webkit-transition: all 3s ease;
+    -moz-transition: all 3s ease;
+    -o-transition: all 3s ease;
+    transition: all 3s ease;
+}		
