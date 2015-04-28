@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL && ~E_NOTICE);
 include('includes/SystemUtil.php'); //clase de funcionalidades
 include('includes/menu.php'); //definiciones de menu
 ?>
@@ -11,10 +12,23 @@ include('includes/menu.php'); //definiciones de menu
         <link href="css/bootstrap-3-lightbox/lightbox-3.2.2/dist/ekko-lightbox.min.css" rel="stylesheet" type="text/css"/>
         <script src="css/bootstrap-3-lightbox/lightbox-3.2.2/dist/ekko-lightbox.min.js" type="text/javascript"></script>
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="css/dropdown.css" rel="stylesheet" type="text/css"/>		
         <link href="css/font-awesome/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>        
         <title>Titulo</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+		(function($){
+	$(document).ready(function(){
+		$('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
+			event.preventDefault(); 
+			event.stopPropagation(); 
+			$(this).parent().siblings().removeClass('open');
+			$(this).parent().toggleClass('open');
+		});
+	});
+})(jQuery);
+		</script>		
     </head>
     <body>
         <div class="container-fluid">
