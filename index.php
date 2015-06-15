@@ -7,31 +7,31 @@ include('includes/menu.php'); //definiciones de menu
 <html>
     <head>
         <script src="scripts/jquery/jquery-2.0.3.min.js" type="text/javascript"></script>
-        <link href="css/style-bootstrap.css" rel="stylesheet" type="text/css"/>
-        <script src="css/bootstrap/bootstrap-3.3.2-dist/js/bootstrap.min.js" type="text/javascript"></script>
-        <link href="css/bootstrap-3-lightbox/lightbox-3.2.2/dist/ekko-lightbox.min.css" rel="stylesheet" type="text/css"/>
-        <script src="css/bootstrap-3-lightbox/lightbox-3.2.2/dist/ekko-lightbox.min.js" type="text/javascript"></script>
+        <link href="css/bootstrap/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="css/bootstrap/bootstrap-3.3.4-dist/js/bootstrap.min.js" type="text/javascript"></script>
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <link href="css/dropdown.css" rel="stylesheet" type="text/css"/>		
         <link href="css/font-awesome/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>        
+        <link href="css/style-bootstrap.css" rel="stylesheet" type="text/css"/>
         <title>Titulo</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>
-		(function($){
-	$(document).ready(function(){
-		$('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
-			event.preventDefault(); 
-			event.stopPropagation(); 
-			$(this).parent().siblings().removeClass('open');
-			$(this).parent().toggleClass('open');
-		});
-	});
-})(jQuery);
-		</script>		
+        <script>
+            (function ($) {
+                $(document).ready(function () {
+                    $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        $(this).parent().siblings().removeClass('open');
+                        $(this).parent().toggleClass('open');
+                    });
+                });
+            })(jQuery);
+        </script>		
     </head>
     <body>
         <div class="container-fluid">
+<<<<<<< HEAD
             <header>
                 <div class="row">
                     <div class="col-xs-12 bg-warning">                        
@@ -78,19 +78,22 @@ include('includes/menu.php'); //definiciones de menu
                         </p>
                     </div>
                 </div>                
+=======
+            <?php include('html/header.php'); ?>
+            <?php include('html/content/slider.php'); ?>
+            <main><!-- contenedor main -->
+                <?php 
+                $content_path = 'html/content/';                
+                $sec = strip_tags(trim($_GET['sec']));
+                $sec = empty($sec) ? 'inicio' : null;
+                $content_file = $content_path.$sec.'.php';
+                if (file_exists($content_path.$sec.'.php')) {
+                    include($content_file);         
+                }
+                ?>
+>>>>>>> origin/development
             </main><!-- fin contenedor principal/main -->
-            <footer>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <!-- footer -->
-                        <h5 class="text-center"><i class="fa fa-copyright"></i>Copyright Colegio Capellan Pascal</h5>
-                        <p class="text-center">Guardiamarina Riquelme s/n Población All ard Las Salinas Viña del Mar, Teléfono: (032) 2546500 Fax: (032) 2480621</p>
-                        <p class="text-center">
-                            Fusce convallis, mauris imperdiet gravida bibendum, nisl turpis suscipit mauris, sed placerat ipsum urna sed risus. In convallis tellus a mauris. Curabitur non elit ut libero tristique sodales. Mauris a lacus. Donec mattis semper leo. In hac habitasse platea dictumst. Vivamus facilisis diam at odio. Mauris dictum, nisi eget consequat elementum, lacus ligula molestie metus, non feugiat orci magna ac sem. Donec turpis. Donec vitae metus. Morbi tristique neque eu mauris. Quisque gravida ipsum non sapien. Proin turpis lacus, scelerisque vitae, elementum at, lobortis ac, quam. Aliquam dictum eleifend risus. In hac habitasse platea dictumst. Etiam sit amet diam. Suspendisse odio. Suspendisse nunc. In semper bibendum libero.
-                        </p>
-                    </div>
-                </div>
-            </footer>
+            <?php include('html/footer.php'); ?>
         </div>
     </body>
 </html>
