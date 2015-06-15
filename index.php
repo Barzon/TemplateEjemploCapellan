@@ -34,7 +34,15 @@ include('includes/menu.php'); //definiciones de menu
             <?php include('html/header.php'); ?>
             <?php include('html/content/slider.php'); ?>
             <main><!-- contenedor main -->
-                <?php include('html/content/inicio.php'); ?>         
+                <?php 
+                $content_path = 'html/content/';                
+                $sec = strip_tags(trim($_GET['sec']));
+                $sec = empty($sec) ? 'inicio' : null;
+                $content_file = $content_path.$sec.'.php';
+                if (file_exists($content_path.$sec.'.php')) {
+                    include($content_file);         
+                }
+                ?>
             </main><!-- fin contenedor principal/main -->
             <?php include('html/footer.php'); ?>
         </div>

@@ -42,9 +42,10 @@ abstract class SystemUtil {
         foreach ($menuArray as $menu => $submenu) {
             //Agregado para crear links en modo MOD REWRITE ON
             //null primer parametro de submenu no tiene link
+            $link_ = $submenu[0];
             if (is_array($submenu[1])) {
                 if (!empty($submenu[0]) || $submenu[0] != null) {
-                    $link_ = $submenu[0];
+                    
                 }				
 				//
 				if ($topline == 1 && $sub == 0) {
@@ -95,7 +96,7 @@ abstract class SystemUtil {
                 } else {
                     $a_class = "";
                 }
-                $str .= "<li" . $a_class . "><a href='" . $link_ . "'>" . $menu . "</a></li>";
+                $str .= "<li" . $a_class . "><a href='" . URL_BASE.$link_ . "'>" . $menu . "</a></li>";
             }
         }
 
